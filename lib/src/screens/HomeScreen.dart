@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:listify/src/blocs/TodoBloc.dart';
+import 'package:listify/src/blocs/TodoState.dart';
 
 import 'package:listify/src/models/Todo.dart';
 import 'package:listify/src/screens/AddNewListItem.dart';
@@ -25,13 +28,13 @@ class HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('Listify'),
       ),
-      body: ListView.builder(
-        itemCount: todoList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(todoList[index].todoName),
-          );
-        },
+      body: BlocBuilder<TodoBloc, TodoState>(
+        builder: (BuildContext context, TodoState state) => ListView.builder(
+          itemCount: todoList.length,
+          itemBuilder: (BuildContext context, int index) => ListTile(
+            title: Text(todoList[index].todoName)
+          )
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
