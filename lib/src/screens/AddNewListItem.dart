@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:listify/src/models/Todo.dart';
+typedef OnSaveCallback = Function(String name);
 
-class AddNewListItem extends StatelessWidget {
+class AddNewListItem extends StatefulWidget {
+  final OnSaveCallback onSave;
+
+  AddNewListItem({this.onSave});
+
+  @override
+  AddNewListItemState createState() {
+    return AddNewListItemState();
+  }
+}
+
+class AddNewListItemState extends State<AddNewListItem> {
   final TextEditingController _textfieldController = new TextEditingController();
 
   @override
@@ -24,7 +35,10 @@ class AddNewListItem extends StatelessWidget {
               ),
               RaisedButton(
                 child: Text('Add New List Item'),
-                onPressed: () => Navigator.pop(context, new Todo(_textfieldController.text)),
+                onPressed: () {
+                  widget.onSave(_textfieldController.text);
+                  Navigator.pop(context);
+                },
               )
             ],
           ),

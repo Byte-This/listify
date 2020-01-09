@@ -3,25 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listify/src/blocs/TodoBloc.dart';
 import 'package:listify/src/blocs/TodoState.dart';
 
-import 'package:listify/src/models/Todo.dart';
-import 'package:listify/src/screens/AddNewListItem.dart';
-
-class HomeScreen extends StatefulWidget {
-  HomeScreen();
-
-  @override
-  HomeScreenState createState() {
-    return HomeScreenState();
-  }
-}
-
-class HomeScreenState extends State<HomeScreen> {
-  List<Todo> todoList = [
-    Todo('List Item 1-1'),
-    Todo('List Item 2-1'),
-    Todo('List Item 3-1'),
-  ];
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +11,23 @@ class HomeScreenState extends State<HomeScreen> {
         title: Text('Listify'),
       ),
       body: BlocBuilder<TodoBloc, TodoState>(
-        builder: (BuildContext context, TodoState state) => ListView.builder(
-          itemCount: todoList.length,
-          itemBuilder: (BuildContext context, int index) => ListTile(
-            title: Text(todoList[index].todoName)
-          )
-        ),
+        builder: (BuildContext context, TodoState state) {
+          if (state is TodoLoaded) {
+            return ListView.builder(
+              itemCount: state.todos.length,
+              itemBuilder: (BuildContext context, int index) => ListTile(
+                title: Text(state.todos[index].todoName)
+              )
+            );
+          } else {
+            return CircularProgressIndicator();
+          }
+        }
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () async {
-          Todo newTodo = await Navigator.push(context, MaterialPageRoute(
-            builder: (BuildContext context) => AddNewListItem()),
-          );
-          todoList.add(newTodo);
+        onPressed: () {
+          Navigator.pushNamed(context, '/addtodo');
         }
       ),
     );
