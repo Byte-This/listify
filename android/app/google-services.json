@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "298243867296",
+    "firebase_url": "https://listify-fb4b8.firebaseio.com",
+    "project_id": "listify-fb4b8",
+    "storage_bucket": "listify-fb4b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298243867296:android:6cb46bb6f414d83988bfc5",
+        "android_client_info": {
+          "package_name": "com.example.listify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298243867296-h5uqc610ppt520s3stjr6441jkeg3ocq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBi5Yd4V98KZCtOCtitKOUxBp6bT2fNKhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298243867296-h5uqc610ppt520s3stjr6441jkeg3ocq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
